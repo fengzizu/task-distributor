@@ -1,0 +1,5 @@
+cell:
+  redis:
+    key:
+    tasks: ${spring.application.name}-cell-redis-key-tasks
+    lock: ${spring.application.name}-cell-redis-key-lock
