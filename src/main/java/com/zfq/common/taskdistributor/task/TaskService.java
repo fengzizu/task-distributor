@@ -32,8 +32,7 @@ public class TaskService {
     }
 
     public void updateFallStatus(String parentKey, String key) {
-        taskManager.updateFallStatus(parentKey, key);
-
+        taskManager.updateFailStatus(parentKey, key);
     }
 
     public void updateSuccessStatus(String key) {
@@ -44,7 +43,7 @@ public class TaskService {
 
     public void updateFallStatus(String key) {
         String parentKey = taskManager.getParentKey(key);
-        taskManager.updateFallStatus(parentKey, key);
+        taskManager.updateFailStatus(parentKey, key);
 
     }
 
@@ -82,7 +81,7 @@ public class TaskService {
     }
 
     public void deleteTask(Collection taskKeys) {
-        taskManager.deleteTask((taskKeys);
+        taskManager.deleteTask((taskKeys));
     }
 
     public Set<String> getsUnTasks(String parentKey) {
@@ -90,7 +89,7 @@ public class TaskService {
     }
 
     public String publishTestamentTask(Task task) {
-        return taskManager.publishTestamentTask(task, "";
+        return taskManager.publishTestamentTask(task, "");
     }
 
     public String publishTestamentTask(Task task, String group) {
@@ -113,11 +112,11 @@ public class TaskService {
         taskManager.startPublish(parentKey);
     }
 
-    public void publishSubTasks(String parentKey, ListTask> subTaskList) {
+    public void publishSubTasks(String parentKey, List<Task> subTaskList) {
         taskManager.publishTasks(parentKey, subTaskList);
     }
 
-    public void publishSubTasks(String parentKey, ListTask> subTaskList, String group) {
+    public void publishSubTasks(String parentKey, List<Task> subTaskList, String group) {
         taskManager.publishTasks(parentKey, subTaskList, group);
     }
 
