@@ -1,5 +1,7 @@
 package com.zfq.common.taskdistributor;
 
+import com.zfq.common.taskdistributor.broadcast.MessageBroadcaster;
+import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;

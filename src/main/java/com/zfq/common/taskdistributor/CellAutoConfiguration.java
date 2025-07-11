@@ -1,6 +1,10 @@
 package com.zfq.common.taskdistributor;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zfq.common.taskdistributor.lock.RedisLockInterceptor;
+import com.zfq.common.taskdistributor.processor.ProcessorManager;
+import com.zfq.common.taskdistributor.task.TaskManager;
+import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
