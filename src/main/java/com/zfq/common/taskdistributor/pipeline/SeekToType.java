@@ -1,4 +1,5 @@
 package com.zfq.common.taskdistributor.pipeline;
 
-public class SeekToType {
+public enum SeekToType {
+    BEGIN, END, OFFSET, TIMESTAMP
 }
