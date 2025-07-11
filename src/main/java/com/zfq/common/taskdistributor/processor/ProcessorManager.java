@@ -1,5 +1,7 @@
 package com.zfq.common.taskdistributor.processor;
 
+import com.zfq.common.taskdistributor.task.ProcessorTask;
+import com.zfq.common.taskdistributor.task.TaskManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.BeansException;
@@ -57,7 +59,7 @@ public class ProcessorManager implements InitializingBean, ApplicationContextAwa
     public void afterPropertiesSet() {
         isRunning = true;
         sharedAvailableWorkerCount = new AtomicInteger(workerNumber);
-        Map<Class, Processor> beansOfType = this.context.getBeansOfType(Processor.class);
+        Map<String, Processor> beansOfType = this.context.getBeansOfType(Processor.class);
         beansOfType.values().forEach(processor -> {
             /**
              * in case it's an anonymous class

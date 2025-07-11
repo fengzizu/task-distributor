@@ -11,8 +11,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @ImportAutoConfiguration(RegisterFileMergeConfig.class)
 @EnableCell
-@EnablecellBroadcast
+@EnableCellBroadcast
 @EnableDiskFileMerge
-@EnlblereCompletePblisher
+@EnableMergeCompletePublisher
 public @interface EnableRegisterDiskFileMerge {
 }

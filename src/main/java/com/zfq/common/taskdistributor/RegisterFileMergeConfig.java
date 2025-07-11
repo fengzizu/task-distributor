@@ -1,5 +1,7 @@
 package com.zfq.common.taskdistributor;
 
+import com.zfq.common.taskdistributor.broadcast.MessageBroadcaster;
+import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -15,18 +17,18 @@ import java.util.UUID;
 @PropertySource("cell.yml")
 @AutoConfigureAfter({CellAutoConfiguration.class, CellBroadcastConfiguration.class, MergeCompletePublisherConfig.class})
 public class RegisterFileMergeConfig {
-    @Value("${cell.merge . file . testament . delay . seconds :300}")
+    @Value("${cell.merge.file.testament.delay.seconds:300}")
     private int testamentDelaySeconds = 300;
-    @Value("${cell.merge .file.working.directory:tmp}")
+    @Value("${cell.merge.file.working.directory:tmp}")
     private String workingDirectory = "tmp";
     @Value("${cell.merge.file.write.pool.size:1}")
     private int writePoolSize = 1;
-    @Value("${cell.merge.file.commit.event.topic:${spring. application. name}-cell-file -merge- commit -event-topic}")
+    @Value("${cell.merge.file.commit.event.topic:${spring.application.name}-cell-file-merge-commit-event-topic}")
     private String fileMergeCommitEventTopic = "fileMergeCommitEventDefaultTopic";
-    @Value("${cel1.merge.file.testament.group:${OSE_ CLUSTER:group}}")
+    @Value("${cell.merge.file.testament.group:${OSE_CLUSTER:group}}")
     private String group = "";
-    @Value("${cel1.merge.file.register.key.suffix:-cell-file-merge -register-key-suffix}")
-    private String registerkeySuffix = "-cell-file -merge-register-key-suffix";
+    @Value("${cell.merge.file.register.key.suffix:-cell-file-merge-register-key-suffix}")
+    private String registerkeySuffix = "-cell-file-merge-register-key-suffix";
 
     @Bean("cellGroupDiskFileMerger")
     @ConditionalOnMissingBean
@@ -58,7 +60,7 @@ public class RegisterFileMergeConfig {
     @Bean(" cellMergeFileCompleteProcessor")
     @ConditionalOnMissingBean
     private MergeFileCompleteProcessor mergeFileCompleteProcessor(CommitEventBroadcaster broadcaster) {
-        return new MergeF ileCompleteProcessor(broadcaster);
+        return new MergeFileCompleteProcessor(broadcaster);
     }
 
     @Bean(" cellMergeF ileCommitCheckProcessor")

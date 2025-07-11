@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.zfq.common.taskdistributor.event.CellStatusEventListener;
 import com.zfq.common.taskdistributor.event.RootTaskStatusEvent;
+import com.zfq.common.taskdistributor.task.ProcessorTask;
+import com.zfq.common.taskdistributor.task.TaskOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;

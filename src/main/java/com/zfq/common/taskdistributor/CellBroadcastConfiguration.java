@@ -1,6 +1,8 @@
 package com.zfq.common.taskdistributor;
 
 import com.zfq.common.taskdistributor.broadcast.BroadcastListener;
+import com.zfq.common.taskdistributor.broadcast.MessageBroadcaster;
+import com.zfq.common.taskdistributor.task.RunningMachineUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,6 +18,8 @@ import org.springframework.data.redis.listener.adapter.MessageListenerAdapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.zfq.common.taskdistributor.CellRedisTemplateConfiguration.CELL_REDIS_TEMPLATE;
 
 @EnableAspectJAutoProxy
 @PropertySource("cell.yml")

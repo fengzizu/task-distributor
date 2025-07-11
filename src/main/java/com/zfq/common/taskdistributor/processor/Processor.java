@@ -1,5 +1,8 @@
 package com.zfq.common.taskdistributor.processor;
 
+import com.zfq.common.taskdistributor.task.ProcessorTask;
+import com.zfq.common.taskdistributor.task.TaskOutput;
+
 public interface Processor {
 
     TaskOutput process(ProcessorTask processorTask);

@@ -1,6 +1,7 @@
 package com.zfq.common.taskdistributor;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import com.zfq.common.taskdistributor.task.TaskService;
+import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -8,7 +9,7 @@ import org.springframework.context.annotation.PropertySource;
 
 @EnableAspectJAutoProxy
 @PropertySource("cell.yml")
-@AutoConfigurationAfter({CellAutoConfiguration.class, CellBroadcastConfiguration.class})
+@AutoConfigureAfter({CellAutoConfiguration.class, CellBroadcastConfiguration.class})
 public class MergeCompletePublisherConfig {
 
     @Bean("cellMergeCompleteTaskPublisher")
