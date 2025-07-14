@@ -1,6 +1,10 @@
 package com.zfq.common.taskdistributor.merge.impl.disk.group;
 
+import com.zfq.common.taskdistributor.merge.MergeFileInfo;
+import com.zfq.common.taskdistributor.merge.MergeFileManager;
 import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskMergeFile;
 import com.zfq.common.taskdistributor.processor.Processor;
 import com.zfq.common.taskdistributor.task.TaskService;
 
@@ -25,7 +29,7 @@ public class GroupDiskFileMerger extends DiskFileMerger {
     @Override
     public void writeAndDelete(DiskMergeFile mergeFile) {
         super.writeAndDelete(mergeFile);
-        manager.unregister(mergeFile.mergeFileInfo().mergekey(), Set.of(mergeFile.getFile().getAbsolutePath()));
+        manager.unregister(mergeFile.mergeFileInfo().mergeKey(), Set.of(mergeFile.getFile().getAbsolutePath()));
     }
 
     @Override

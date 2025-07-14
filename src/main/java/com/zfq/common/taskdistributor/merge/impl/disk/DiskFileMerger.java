@@ -4,6 +4,7 @@ import com.zfq.common.taskdistributor.merge.FileMergerTestament;
 import com.zfq.common.taskdistributor.merge.MergeFileInfo;
 import com.zfq.common.taskdistributor.merge.MergeFileManager;
 import com.zfq.common.taskdistributor.merge.impl.AbstractFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
 import com.zfq.common.taskdistributor.processor.Processor;
 import com.zfq.common.taskdistributor.task.Task;
 import com.zfq.common.taskdistributor.task.TaskService;

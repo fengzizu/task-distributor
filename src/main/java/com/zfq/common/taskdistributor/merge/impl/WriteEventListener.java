@@ -1,6 +1,8 @@
 package com.zfq.common.taskdistributor.merge.impl;
 
 import com.zfq.common.taskdistributor.broadcast.BroadcastListener;
+import com.zfq.common.taskdistributor.merge.FileMerger;
+import com.zfq.common.taskdistributor.merge.MergeFileInfo;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.Topic;
 
@@ -15,12 +17,12 @@ public class WriteEventListener extends BroadcastListener<MergeFileInfo> {
     public WriteEventListener(FileMerger fileMerger, String topic) {
         this.fileMerger = fileMerger;
         this.topic = topic;
-        this.topiclist = Arrays.asList(ChannelTopic.of(topic));
+        this.topicList = Arrays.asList(ChannelTopic.of(topic));
     }
 
     @Override
     public void onMessage(MergeFileInfo message, String topic) {
-        fileMerger.removeAndwriteAndDelete(message);
+        fileMerger.removeAndWriteAndDelete(message);
     }
 
     @Override

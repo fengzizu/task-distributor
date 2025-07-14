@@ -2,6 +2,7 @@ package com.zfq.common.taskdistributor.merge.impl.disk.group.processor;
 
 import com.zfq.common.taskdistributor.merge.MergeFile;
 import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskMergeFile;
 import com.zfq.common.taskdistributor.processor.Processor;
 import com.zfq.common.taskdistributor.task.ProcessorTask;
 import com.zfq.common.taskdistributor.task.TaskOutput;

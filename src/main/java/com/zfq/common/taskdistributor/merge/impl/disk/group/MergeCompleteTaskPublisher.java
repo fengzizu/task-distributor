@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor.merge.impl.disk.group;
 
+import com.zfq.common.taskdistributor.merge.impl.disk.group.processor.MergeFileCompleteProcessor;
 import com.zfq.common.taskdistributor.task.Task;
 import com.zfq.common.taskdistributor.task.TaskService;
 

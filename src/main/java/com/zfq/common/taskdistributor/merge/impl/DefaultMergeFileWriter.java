@@ -1,6 +1,8 @@
 package com.zfq.common.taskdistributor.merge.impl;
 
 import com.zfq.common.taskdistributor.merge.MergeFile;
+import com.zfq.common.taskdistributor.merge.MergeFileListener;
+import com.zfq.common.taskdistributor.merge.MergeFileWriter;
 import org.springframework.context.ApplicationContext;
 
 import java.util.List;
@@ -16,11 +18,11 @@ public class DefaultMergeFileWriter implements MergeFileWriter<MergeFile> {
 
     @Override
     public void writeFile(MergeFile mergeFile) {
-        Class<? extends MergeFileListener> listener = mergeFile.mergeFileInfo().mergeFilelistener();
+        Class<? extends MergeFileListener> listener = mergeFile.mergeFileInfo().mergeFileListener();
         MergeFileListener mergeFileListener = context.getBean(listener);
-        List<byte[]> list = mergeFile.readlines();
+        List<byte[]> list = mergeFile.readLines();
         List collect = list.stream().map(s -> mergeFileListener.deserialize(s)).collect(Collectors.toList());
-        mergeFilelistener.onMergeFile(new ExtendedMergeFileInfo(mergeFile.mergeFileInfo(), mergeFile.uniqueFileName()), collect.stream());
+        mergeFileListener.onMergeFile(new ExtendedMergeFileInfo(mergeFile.mergeFileInfo(), mergeFile.uniqueFileName()), collect.stream());
     }
 
     @Override

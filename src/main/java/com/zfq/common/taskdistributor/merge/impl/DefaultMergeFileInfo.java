@@ -1,5 +1,8 @@
 package com.zfq.common.taskdistributor.merge.impl;
 
+import com.zfq.common.taskdistributor.merge.MergeFileInfo;
+import com.zfq.common.taskdistributor.merge.MergeFileListener;
+
 import java.io.Serializable;
 import java.time.Duration;
 import java.util.Objects;
@@ -12,7 +15,7 @@ public class DefaultMergeFileInfo<T> implements MergeFileInfo<T>, Serializable {
     private final String mergeKey;
     private final String fileType;
 
-    public DefaultMergeFileInfo(Class<? extends MergeFilelistener<T>> mergeFileListener, long maxMergeSize, Duration maxWaitTime, String mergeKey, String fileType) {
+    public DefaultMergeFileInfo(Class<? extends MergeFileListener<T>> mergeFileListener, long maxMergeSize, Duration maxWaitTime, String mergeKey, String fileType) {
         this.mergeFileListener = mergeFileListener;
         this.maxMergeSize = maxMergeSize;
         this.mergeKey = mergeKey;
@@ -21,7 +24,7 @@ public class DefaultMergeFileInfo<T> implements MergeFileInfo<T>, Serializable {
     }
 
     @Override
-    public Class<? extends MergeFilelistener<T>> mergeFilelistener() {
+    public Class<? extends MergeFileListener<T>> mergeFileListener() {
         return this.mergeFileListener;
     }
 
@@ -31,7 +34,7 @@ public class DefaultMergeFileInfo<T> implements MergeFileInfo<T>, Serializable {
     }
 
     @Override
-    public Duration maxwaitTime() {
+    public Duration maxWaitTime() {
         return this.maxWaitTime;
     }
 
@@ -66,7 +69,7 @@ public class DefaultMergeFileInfo<T> implements MergeFileInfo<T>, Serializable {
                 ", maxWaitTIme=" + maxWaitTime +
                 ", mergeKey ='" + mergeKey + '\'' +
                 ", fileType='" + fileType + '\'' +
-                '}';
+                "}";
     }
 
 

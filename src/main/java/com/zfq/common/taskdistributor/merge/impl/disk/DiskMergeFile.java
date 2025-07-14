@@ -45,7 +45,7 @@ public class DiskMergeFile<T> implements MergeFile<T> {
     public DiskMergeFile(File file, MergeFileInfo mergeFileInfo) {
         this.file = file;
         this.size = file.length();
-        this.lastUpdateTime = System.currentTimeMillis(); .
+        this.lastUpdateTime = System.currentTimeMillis();
         this.mergeFileInfo = mergeFileInfo;
     }
 

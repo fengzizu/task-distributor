@@ -1,5 +1,7 @@
 package com.zfq.common.taskdistributor.merge.impl.disk.group;
 
+import com.zfq.common.taskdistributor.merge.MergeFileManager;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskMergeFile;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
 
@@ -14,14 +16,14 @@ public class DiskMergeFileManager implements MergeFileManager<DiskMergeFile, Map
 
     public DiskMergeFileManager(RedisTemplate redisTemplate, String mergeFileRegisterKeySuffix, String group) {
         this.redisTemplate = redisTemplate;
-        this.mergeFileRegisterkeySuffix = mergeFileRegisterkeySuffix;
+        this.mergeFileRegisterkeySuffix = mergeFileRegisterKeySuffix;
         this.group = group;
     }
 
     @Override
     public void register(DiskMergeFile mergeFile) {
         String mergeKey = mergeFile.mergeFileInfo().mergeKey();
-        String registerkey = makeRegisterKey(mergeKey);
+        String registerKey = makeRegisterKey(mergeKey);
         redisTemplate.opsForHash().put(registerKey, mergeFile.getFile().getAbsolutePath(), new RegisterInfo(group, false));
     }
 
@@ -32,7 +34,7 @@ public class DiskMergeFileManager implements MergeFileManager<DiskMergeFile, Map
 
     @Override
     public void commit(DiskMergeFile mergeFile) {
-        String mergekey = mergeFile.mergeFileInfo().mergekey();
+        String mergeKey = mergeFile.mergeFileInfo().mergeKey();
         String registerKey = makeRegisterKey(mergeKey);
         DefaultRedisScript script = new DefaultRedisScript("local k = ARGV[1] local v = redis.call('HGET', KEYS[1], k) if(v) then redis.call('HSET', KEYS[1], k, ARGV[2]) return v else return nil end");
         script.setResultType(Object.class);

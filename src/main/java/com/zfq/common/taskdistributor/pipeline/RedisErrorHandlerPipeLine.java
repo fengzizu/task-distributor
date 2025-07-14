@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor.pipeline;
 
+import com.zfq.common.taskdistributor.task.RunningMachineUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;

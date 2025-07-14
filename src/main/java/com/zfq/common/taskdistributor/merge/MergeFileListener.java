@@ -1,5 +1,7 @@
 package com.zfq.common.taskdistributor.merge;
 
+import com.zfq.common.taskdistributor.merge.impl.ExtendedMergeFileInfo;
+
 import java.util.stream.Stream;
 
 public interface MergeFileListener<T> {

@@ -1,5 +1,8 @@
 package com.zfq.common.taskdistributor.merge.impl.disk.group;
 
+import com.zfq.common.taskdistributor.merge.FileMerger;
+import com.zfq.common.taskdistributor.merge.FileMergerTestament;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskTestamentProcessor;
 import com.zfq.common.taskdistributor.task.TaskService;
 
 public class GroupTestamentProcessor extends DiskTestamentProcessor {

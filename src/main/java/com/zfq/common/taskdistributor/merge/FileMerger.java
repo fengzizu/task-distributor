@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor.merge;
 
+import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileInfo;
 import org.springframework.context.SmartLifecycle;
 
 import java.io.IOException;
