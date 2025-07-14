@@ -1,6 +1,12 @@
 package com.zfq.common.taskdistributor;
 
 import com.zfq.common.taskdistributor.broadcast.MessageBroadcaster;
+import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.WriteEventBroadcaster;
+import com.zfq.common.taskdistributor.merge.impl.WriteEventListener;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskTestamentProcessor;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.DiskMergeFileManager;
 import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,20 +22,22 @@ import java.io.File;
 import java.time.Duration;
 import java.util.UUID;
 
+import static com.zfq.common.taskdistributor.CellRedisTemplateConfiguration.CELL_REDIS_TEMPLATE;
+
 @EnableAspectJAutoProxy
 @PropertySource("cell.yml")
 @AutoConfigureAfter({CellAutoConfiguration.class, CellBroadcastConfiguration.class, RegisterFileMergeConfig.class})
 public class FileMergeConfig {
 
-    @Value("${cell.merge . file . testament . delay . seconds :300}")
+    @Value("${cell.merge.file.testament.delay.seconds:300}")
     private int testamentDelaySeconds = 300;
-    @Value("${cell.merge . file . working . directory:tmp}")
+    @Value("${cell.merge.file.working.directory:tmp}")
     private String workingDirectory = "tmp";
     @Value("${cell.merge.file .write.pool.size:1}")
     private int writePoolSize = 1;
-    @Value("${cell.merge.file.event.topic:${spring. application. name}-cell-file-merge-event-topic}")
+    @Value("${cell.merge.file.event.topic:${spring.application.name}-cell-file-merge-event-topic}")
     private String fileMergeEventTopic = "fileMergeEventDefaultTopic";
-    @Value("${cell.merge.file.testament.group:${spring . profiles . active}}")
+    @Value("${cell.merge.file.testament.group:${spring.profiles.active}}")
     private String group = " ";
     @Value("${cell.merge.file.register.key.suffix:-cell-file-merge-register-key-suffix}")
     private String registerKeySuffix = "-cell-file-merge-register-key-suffix";
@@ -42,7 +50,7 @@ public class FileMergeConfig {
 
     @Bean("cellDiskMergeFileManager")
     @ConditionalOnMissingBean
-    private DiskMergeFileManager diskMergeFileReporter(@Qualifier(CELLREDIS_ TEMPLATE) RedisTemplate redisTemplate) {
+    private DiskMergeFileManager diskMergeFileReporter(@Qualifier(CELL_REDIS_TEMPLATE) RedisTemplate redisTemplate) {
         return new DiskMergeFileManager(redisTemplate, registerKeySuffix, group);
     }
 

@@ -1,8 +1,11 @@
 package com.zfq.common.taskdistributor.serialize;
 
-import com.sun.jdi.ClassType;
-import com.zfq.common.taskdistributor.merge.Map_List.group.RegisterInfo;
+import com.zfq.common.taskdistributor.merge.FileMerger;
 import com.zfq.common.taskdistributor.merge.MergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.AbstractFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.disk.DiskFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.RegisterInfo;
 
 import java.beans.Introspector;
 import java.io.Serializable;
@@ -34,16 +37,16 @@ public class ReflectUtils {
         String test = "test";
         String encoderTest = SerDesUtils.encode(test);
         Object decoderTest = SerDesUtils.encode(encoderTest);
-        setvalue(groupFoldName, decoderTest, registerInfo);
+        setValue(groupFoldName, decoderTest, registerInfo);
         boolean value = false;
         String encoderValue = SerDesUtils.encode(value);
         Object decoderValue = SerDesUtils.encode(encoderValue);
         setValue(boolFoldName, decoderValue, registerInfo);
         System.out.println(registerInfo.getGroup());
         System.out.println(registerInfo.isCommitted());
-        List<Type> list = genericTypes(ListFileMerger.class, FileMerger.class);
+        List<Type> list = genericTypes(DiskFileMerger.class, FileMerger.class);
         list.forEach(System.out::println);
-        List<Type> types = genericTypes(ListFileMerger.class, AbstractFileMerger.class);
+        List<Type> types = genericTypes(DiskFileMerger.class, AbstractFileMerger.class);
         types.forEach(System.out::println);
         List<Type> genericTypes = genericTypes(DefaultMergeFileWriter.class, MergeFileWriter.class);
         genericTypes.forEach(System.out::println);

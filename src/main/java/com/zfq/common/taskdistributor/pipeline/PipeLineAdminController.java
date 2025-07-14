@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor.pipeline;
 
+import com.zfq.common.taskdistributor.task.TaskStatus;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

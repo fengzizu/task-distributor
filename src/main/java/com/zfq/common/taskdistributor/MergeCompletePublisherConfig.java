@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor;
 
+import com.zfq.common.taskdistributor.merge.impl.disk.group.MergeCompleteTaskPublisher;
 import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -17,4 +18,5 @@ public class MergeCompletePublisherConfig {
     private MergeCompleteTaskPublisher mergeCompleteTaskPublisher(TaskService taskService) {
         return new MergeCompleteTaskPublisher(taskService);
     }
+
 }

@@ -1,6 +1,15 @@
 package com.zfq.common.taskdistributor;
 
 import com.zfq.common.taskdistributor.broadcast.MessageBroadcaster;
+import com.zfq.common.taskdistributor.merge.impl.CommitEventBroadcaster;
+import com.zfq.common.taskdistributor.merge.impl.CommitEventListener;
+import com.zfq.common.taskdistributor.merge.impl.DefaultMergeFileWriter;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.DiskMergeFileManager;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.GroupDiskFileMerger;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.GroupTestamentProcessor;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.processor.MergeFileCommitCheckProcessor;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.processor.MergeFileCompleteProcessor;
+import com.zfq.common.taskdistributor.merge.impl.disk.group.processor.MergeFileWriteProcessor;
 import com.zfq.common.taskdistributor.task.TaskService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -48,7 +57,7 @@ public class RegisterFileMergeConfig {
     @Bean("cellCommitEventListener")
     @ConditionalOnMissingBean
     private CommitEventListener mergeFileEndEventListener(GroupDiskFileMerger fileMerger) {
-        return new CommitEventlistener(fileMerger, fileMergeCommitEventTopic);
+        return new CommitEventListener(fileMerger, fileMergeCommitEventTopic);
     }
 
     @Bean(" cellCommitEventBroadcaster")

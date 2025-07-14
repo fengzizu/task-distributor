@@ -1,5 +1,6 @@
 package com.zfq.common.taskdistributor.coordinator;
 
+import com.zfq.common.taskdistributor.task.TaskStatus;
 import org.springframework.data.redis.core.DefaultTypedTuple;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ZSetOperations;
@@ -39,9 +40,7 @@ public class RedisCoordinator implements DistributedCoordinator {
 
     @Override
     public boolean createOrUpdateThenCheck(String id, Set<String> keySet, String key, Duration expiration) {
-        Set<DefaultTypedTuple> collect = keySet.stream().map(k -> new DefaultTypedTuple(k,
-                TaskStatus.RUNNING.getScorel)).collect(Collectors.toSet());
-
+        Set<DefaultTypedTuple> collect = keySet.stream().map(k -> new DefaultTypedTuple(k, TaskStatus.RUNNING.getScore())).collect(Collectors.toSet());
         Long count = redisTemplate.opsForZSet().addIfAbsent(id, collect);
         Optional.ofNullable(count).filter(c -> c == keySet.size()).ifPresent(created -> redisTemplate.expire(id, expiration));
         DefaultRedisScript script = new DefaultRedisScript(
